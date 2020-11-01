@@ -19,28 +19,17 @@ router.get("/", async (req, res) => {
 // @desc    Create Single Record
 // @route   POST /products
 router.post("/", async (req, res) => {
-    const creator = new Officer({
-        firstName: "Friedrich1",
-        lastName: "Vogel",
-        badgeNumber: "SD-155"
-    })
+    const creator = Officer.findOne( {badgeNumber: req.body.creator} )
+    if(!creator) return res.status(404).json({ message: "Officer Not Found" })
     
-    creator.save(async (err) => {
-        if (err) return res.status(400).json(err)
+    const record = new Record({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        creator: creator._id
+    })
 
-        const record = new Record({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            creator: creator._id
-        })
-      
-        savedRecord = await record.save((err) => {
-          if (err) return res.status(400).json(err);
-          res.status(201).json(savedRecord)
-        })
-      })
+    savedRecord = await record.save()
+    res.status(201).json(savedRecord)
 })
 
 module.exports = router
-
-

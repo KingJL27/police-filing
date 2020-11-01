@@ -8,7 +8,7 @@ const mongoose = require("mongoose")
 // @route   GET /officers
 router.get("/", async (req, res) => {
     try {
-        const officers = await Officer.find().populate("personRecords")
+        const officers = await Officer.find()
         res.status(200).json(officers)
     } catch (error) {
         res.status(400).json({ message: error })
