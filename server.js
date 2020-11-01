@@ -12,14 +12,18 @@ const PORT = process.env.PORT || 5000
 const DB_CONNECTION = process.env.DB_CONNECTION
 
 const recordsRoute = require("./routes/records")
+const officersRoute = require("./routes/officers")
 
 // ROUTES
 app.get("/", (req, res) => {
     res.send("Home")
 })
 
-// @route POST /records
+// @route /records
 app.use("/records", recordsRoute)
+
+// @route /officers
+app.use("/officers", officersRoute)
 
 
 // connect to db
