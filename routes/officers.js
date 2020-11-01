@@ -11,7 +11,18 @@ router.get("/", async (req, res) => {
         const officers = await Officer.find().populate("personRecords")
         res.status(200).json(officers)
     } catch (error) {
-        res.json({ message: error })
+        res.status(400).json({ message: error })
+    }
+})
+
+// @desc    Get Single Officers
+// @route   GET /officers/:badgeNumber
+router.get("/:badgeNumber", async (req, res) => {
+    try {
+        const officer = await Officer.findOne({ badgeNumber: req.params.badgeNumber})
+        res.status(200).json(officer)
+    } catch (error) {
+        res.status(400).json({ message: error })
     }
 })
 
@@ -28,9 +39,9 @@ router.post("/", async (req, res) => {
 
     try {
         const savedOfficer = await officer.save()
-        res.json(savedOfficer)
+        res.status(201).json(savedOfficer)
     } catch (error) {
-        res.json({ message: error })
+        res.status(400).json({ message: error })
     }
 })
 
