@@ -1,7 +1,7 @@
 // IMPORTS
 const express = require("express")
 const router = express.Router()
-const Record = require("../models/PersonRecord")
+const PersonRecord = require("../models/PersonRecord")
 const Officer = require("../models/Officer")
 const mongoose = require("mongoose")
 
@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 // @route   GET /records
 router.get("/", async (req, res) => {
     try {
-        const records = await Record.find()
+        const records = await PersonRecord.find()
         res.status(200).json(records)
     } catch (error) {
         res.status(400).json({ message: error })
@@ -18,9 +18,9 @@ router.get("/", async (req, res) => {
 
 // @desc    Get Single Record
 // @route   GET /records/:firstName
-router.get("/:firstName&:lastName", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
-        const record = await Record.findOne({ firstName: req.params.firstName, lastName: req.params.lastName })
+        const record = await PersonRecord.findOne({ id: id })
         res.status(200).json(record)
     } catch (error) {
         res.status(400).json({ message: error })
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     
     const c = await Record.countDocuments() + 1
 
-    const record = new Record({
+    const record = new PersonRecord({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         creator: creator.badgeNumber,

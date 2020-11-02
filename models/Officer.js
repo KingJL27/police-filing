@@ -17,7 +17,11 @@ const Officer = mongoose.Schema({
         required: true,
         unique: true
     },
-    personRecords: [{type: Number}]
+    personRecords: [{type: Number}],
+    hidden: {
+        type: Boolean,
+        default: false
+    }
 })
 
 Officer.plugin(uniqueValidator);
