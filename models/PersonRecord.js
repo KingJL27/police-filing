@@ -17,7 +17,15 @@ const PersonRecord = mongoose.Schema({
     },
     creator: {
         type: String,
-        ref: "Officer"
+        required: true
+    },
+    id: {
+        type: Number,
+        required: true
+    },
+    hidden: {
+        type: Boolean,
+        default: false
     }
 })
 

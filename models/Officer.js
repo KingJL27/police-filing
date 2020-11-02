@@ -1,6 +1,6 @@
 // IMPORTS
 const mongoose = require("mongoose")
-var uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator');
 
 // Schema for officers
 const Officer = mongoose.Schema({
@@ -17,7 +17,7 @@ const Officer = mongoose.Schema({
         required: true,
         unique: true
     },
-    personRecords: [{type: String, ref: "PersonRecord"}]
+    personRecords: [{type: Number}]
 })
 
 Officer.plugin(uniqueValidator);
