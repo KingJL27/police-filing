@@ -13,6 +13,7 @@ const DB_CONNECTION = process.env.DB_CONNECTION
 
 const recordsRoute = require("./routes/records")
 const officersRoute = require("./routes/officers")
+const offensesRoute = require("./routes/offenses")
 
 // ROUTES
 app.get("/", (req, res) => {
@@ -24,6 +25,9 @@ app.use("/records", recordsRoute)
 
 // @route /officers
 app.use("/officers", officersRoute)
+
+// @route /offenses
+app.use("/offenses", offensesRoute)
 
 
 // connect to db

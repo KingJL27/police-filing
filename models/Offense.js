@@ -11,7 +11,7 @@ const Offense = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    offenders: [{ type: String }]
+    offenders: [{ type: Number }]
 })
 
-module.exports = mongoose.model("PersonRecord", PersonRecord)
+module.exports = mongoose.model("Offense", Offense)

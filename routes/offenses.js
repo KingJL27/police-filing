@@ -1,45 +1,44 @@
 const express = require("express")
 const router = express.Router()
-const PersonRecord = require("../models/PersonRecord")
 const Officer = require("../models/Officer")
+const Offense = require("../models/Offense")
 const mongoose = require("mongoose")
 
-// @desc    Get All Officers
-// @route   GET /officers
+// @desc    Get All Offenses
+// @route   GET /offenses
 router.get("/", async (req, res) => {
     try {
-        const officers = await Officer.find()
-        res.status(200).json(officers)
+        const offense = await Offense.find()
+        res.status(200).json(offense)
     } catch (error) {
         res.status(400).json({ message: error })
     }
 })
 
-// @desc    Get Single Officers
-// @route   GET /officers/:badgeNumber
-router.get("/:badgeNumber", async (req, res) => {
+// @desc    Get Single Offense
+// @route   GET /offense:id
+router.get("/:id", async (req, res) => {
     try {
-        const officer = await Officer.findOne({ badgeNumber: req.params.badgeNumber})
-        res.status(200).json(officer)
+        const offense = await Offense.findOne({ id: req.params.id })
+        res.status(200).json(offense)
     } catch (error) {
         res.status(400).json({ message: error })
     }
 })
 
-// @desc    Create Single Officers
-// @route   POST /officers
+// @desc    Create Single Offense
+// @route   POST /offense
 router.post("/", async (req, res) => {
-    const officer = new Officer({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        badgeNumber: req.body.badgeNumber
+    const id = await Offense.countDocuments() + 1
+    
+    const offense = new Offense({
+        id: id,
+        offenders: req.body.offenders
     })
 
-    console.log(req.body.firstName, req.body.lastName)
-
     try {
-        const savedOfficer = await officer.save()
-        res.status(201).json(savedOfficer)
+        const savedOffense = await offense.save()
+        res.status(201).json(savedOffense)
     } catch (error) {
         res.status(400).json({ message: error })
     }
