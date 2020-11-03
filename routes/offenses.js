@@ -30,6 +30,11 @@ router.get("/:id", async (req, res) => {
 // @route   POST /offense
 router.post("/", async (req, res) => {
     const id = await Offense.countDocuments() + 1
+    const offenders = req.body.offenders
+
+    offenders.forEach(offender => {
+        console.log(offender)
+    });
     
     const offense = new Offense({
         id: id,

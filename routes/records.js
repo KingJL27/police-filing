@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 // @route   GET /records/:firstName
 router.get("/:id", async (req, res) => {
     try {
-        const record = await PersonRecord.findOne({ id: id })
+        const record = await PersonRecord.findOne({ id: req.params.id })
         res.status(200).json(record)
     } catch (error) {
         res.status(400).json({ message: error })
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
     const creator = await Officer.findOne( {badgeNumber: req.body.creator} )
     if(!creator) return res.status(404).json({ message: "Officer Not Found" })
     
-    const c = await Record.countDocuments() + 1
+    const c = await PersonRecord.countDocuments() + 1
 
     const record = new PersonRecord({
         firstName: req.body.firstName,
@@ -44,7 +44,6 @@ router.post("/", async (req, res) => {
 
     creator.personRecords.push(c)
     await creator.save()
-    console.log(creator.personRecords)
 
     savedRecord = await record.save()
     res.status(201).json(savedRecord)
