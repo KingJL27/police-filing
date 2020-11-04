@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 })
 
 // @desc    Get Single Record
-// @route   GET /records/:firstName
+// @route   GET /records/:id
 router.get("/:id", async (req, res) => {
     try {
         const record = await PersonRecord.findOne({ id: req.params.id })
