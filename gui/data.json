@@ -1,0 +1,28 @@
+{
+    "info": [
+        {
+            "hidden": false,
+            "_id": "5fa03721e8c2563a24b61c2e",
+            "name": "Lars Koch",
+            "birthday": "04.02.1990",
+            "job": "Arbeitslos",
+            "licenses": "F:A/B",
+            "wanted": "Ja",
+            "convicted": "Ja",
+            "id": 1,
+            "v": 0
+        },
+        {
+            "hidden": false,
+            "_id": "5fa03721e8c2563a24b61c2e",
+            "name": "Hans Müller",
+            "birthday": "23.03.19970",
+            "job": "Polizei",
+            "licenses": "F:A",
+            "wanted": "Nein",
+            "convicted": "Nein",
+            "id": 2,
+            "v": 0
+        }
+    ]
+}
